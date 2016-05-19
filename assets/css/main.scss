@@ -88,6 +88,14 @@ hr {
 	.monitor {
 		background: #9777a8;
 	}
+	.browser img, .monitor img {
+		visibility: hidden;
+	}
+	@media screen and (min-width: 768px) {
+		.browser img, .monitor img {
+			visibility: visible;
+		}
+	}
 }
 
 section {

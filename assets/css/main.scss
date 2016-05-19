@@ -104,7 +104,7 @@ section {
 		.thumb {
 			& {
 				margin-bottom: 15px;
-		    // border: 1px solid #768E98;
+        border: 1px solid #CDCDD0;
 				// padding: 5px;
 				overflow: hidden;
 			}
@@ -133,7 +133,7 @@ section {
 	}
 	&.experience {
 		& {
-			padding: 40px 15px;
+			padding: 40px 0;
 			background: #38454F;
 		}
 		&, h2 {

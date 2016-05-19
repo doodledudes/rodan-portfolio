@@ -1,0 +1,266 @@
+@import '_mixins';
+
+// Global
+body {
+	font-family: 'Open Sans', sans-serif;
+  color: #5a5a5a;
+	font-weight: lighter;
+	font-size: 16px;
+}
+h1,h2,h3,h4,h5 {
+	color: #768E9B;
+	margin-top: 0;
+}
+p {
+	line-height: 28px;
+}
+hr {
+	border-color: #495761;
+}
+
+// Navbar
+.navbar {
+	& {
+		margin-bottom: 0;
+	}
+	.navbar-brand {
+		& {
+			float: none;
+	    display: inline-block;
+			color: #768E9B;
+			font-weight: 400;
+		}
+		img {
+			width: 150px;
+			margin: auto;
+			@include border-radius(50%);
+		}
+		@media screen and (max-width: 767px) {
+			& {
+				position: absolute;
+				left: 60px;
+				right: 60px;
+			}
+			& .photo {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 40px;
+			}
+			& img {
+				width: 25%;
+			}
+		}
+		@media screen and (max-width: 500px) {
+			& img {
+				width: 40%;
+			}
+		}
+	}
+	.navbar-header {
+		float: none;
+		text-align: center;
+	}
+	.navbar-collapse {
+		text-align: center;
+	}
+	.navbar-nav {
+		float: none;
+		display: inline-block;
+	}
+	.navbar-nav > li > a {
+		// text-transform: uppercase;
+	}
+
+	.navbar-toggle {
+    border: none;
+		@include border-radius(0);
+		.icon-bar {
+			background: #6DC9CC;
+		}
+		&:focus, &:hover, &:active {
+			background: #ECF0F1;
+		}
+	}
+}
+.banner {
+	background: #6dc9cc;
+	.monitor {
+		background: #9777a8;
+	}
+}
+
+section {
+	margin-bottom: 30px;
+	&.portfolio {
+		.thumb {
+			& {
+				@include box-shadow(0 1px 2px rgba(0, 0, 0, .15));
+				margin-bottom: 15px;
+			}
+			img {
+				max-width: 100%;
+				min-width: 100%;
+			}
+			.fa {
+				display: none;
+			}
+			& + h4 {
+				font-size: 14px;
+				text-align: center;
+			}
+		}
+		h2 {
+			text-transform: uppercase;
+		}
+	}
+	&.experience {
+		& {
+			padding: 40px 15px;
+			background: #38454F;
+		}
+		&, h2 {
+			color: #E7ECED;
+		}
+		& h2 {
+			text-align: center;
+			font-size: 28px;
+			text-transform: uppercase;
+		}
+		.timeline {
+			position: relative;
+			@media screen and (min-width: 768px) {
+		    padding: 30px 0;
+			}
+			.pole {
+				position: absolute;
+		    left: 0;
+		    right: 0;
+		    top: 0;
+		    height: 100%;
+		    width: 10px;
+		    background: #E7ECED;
+				@include border-radius(5px);
+				@media screen and (min-width: 768px) {
+					margin: auto;
+				}
+			}
+			.scope {
+				& {
+					position: relative;
+					background: #2C343A;
+					color: white;
+					margin: 40px 0;
+					@include border-radius(4px);
+				}
+				&.present {
+					.point {
+						& {
+							background: #24AE5F;
+						}
+					}
+				}
+				.date {
+					padding: 15px;
+					background: #768E98;
+					@include border-radius-top(4px);
+				}
+				.data {
+					padding: 15px;
+				}
+				.point {
+					position: absolute;
+					background: #ED7161;
+					border: 2px solid #E7ECED;
+					padding: 2px 0;
+					text-align: center;
+					@include border-radius(50%);
+					@include box(30px);
+				}
+				&:nth-child(even) {
+					margin-left: 30px;
+					.point {
+						left: -40px;
+				    top: calc(50% - 15px);
+					}
+				}
+				&:nth-child(odd) {
+					margin-left: 30px;
+					.point {
+						left: -40px;
+				    top: calc(50% - 15px);
+					}
+				}
+				@media screen and (min-width: 768px) {
+					width: 45%;
+					&:nth-child(even) {
+						margin-left: calc(50% + 25px);
+					}
+					&:nth-child(odd) {
+						margin-left: 0;
+						width: calc(50% - 25px);
+						text-align: right;
+						.point {
+							right: -40px;
+							left: inherit;
+					    top: calc(50% - 15px);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+footer {
+	& {
+		text-align: center;
+		padding: 85px 0 45px;
+		background: #2C343A;
+		position: relative;
+	}
+	img {
+		width: 150px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: -60px;
+	}
+	& {
+		color: white;
+	}
+	i {
+		color: #768E98;
+	}
+	a {
+		&, &:hover, &:active, &:visited, &:link {
+			text-decoration: none;
+		}
+	}
+	strong {
+		font-weight: normal;
+		text-transform: uppercase;
+		font-size: 14px;
+	}
+	span.text {
+		color: #ACABB1;
+	}
+}
+
+.wrap {
+	padding: 15px 0 40px;
+}
+@media screen and (min-width: 768px) {
+	.wrap {
+		padding: 40px 0 70px;
+	}
+	.navbar {
+		.navbar-header {
+	    margin-top: -93px;
+		}
+		.navbar-brand {
+			font-size: 30px;
+		}
+	}
+}

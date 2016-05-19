@@ -103,10 +103,19 @@ section {
 	&.portfolio {
 		.thumb {
 			& {
-				@include box-shadow(0 1px 2px rgba(0, 0, 0, .15));
 				margin-bottom: 15px;
+		    // border: 1px solid #768E98;
+				// padding: 5px;
+				overflow: hidden;
+			}
+			&:hover {
+				// @include box-shadow(0 1px 2px rgba(0, 0, 0, .15));
+			 	img {
+					transform: scale(1.2,1.2);
+				}
 			}
 			img {
+				@include transition(all, ease-in-out, .2s);
 				max-width: 100%;
 				min-width: 100%;
 			}
@@ -184,19 +193,49 @@ section {
 					text-align: center;
 					@include border-radius(50%);
 					@include box(30px);
+					&:before {
+						font-family: "FontAwesome";
+						content: "\f041";
+					}
+				}
+				.company a {
+					color: #aaa;
 				}
 				&:nth-child(even) {
 					margin-left: 30px;
 					.point {
 						left: -40px;
-				    top: calc(50% - 15px);
+				    top: 12px;
+					}
+					&:before {
+						content: "";
+				    width: 0;
+				    height: 0;
+				    border-top: 10px solid transparent;
+				    border-bottom: 10px solid transparent;
+				    border-right: 10px solid #768E98;
+				    position: absolute;
+				    left: -10px;
+				    top: 16px;
 					}
 				}
 				&:nth-child(odd) {
 					margin-left: 30px;
 					.point {
 						left: -40px;
-				    top: calc(50% - 15px);
+				    top: 12px;
+					}
+					&:before {
+						content: "";
+				    width: 0;
+				    height: 0;
+						border-top: 10px solid transparent;
+					  border-bottom: 10px solid transparent;
+					  border-left: 10px solid #768E98;
+				    position: absolute;
+						left: -10px;
+				    top: 16px;
+				    transform: rotate(180deg);
 					}
 				}
 				@media screen and (min-width: 768px) {
@@ -205,13 +244,45 @@ section {
 						margin-left: calc(50% + 25px);
 					}
 					&:nth-child(odd) {
-						margin-left: 0;
-						width: calc(50% - 25px);
-						text-align: right;
+						margin-left: 20px;
+				    width: calc(50% - 45px);
 						.point {
 							right: -40px;
 							left: inherit;
-					    top: calc(50% - 15px);
+						}
+						&:before {
+					    transform: none;
+							right: -10px;
+							left: inherit;
+						}
+					}
+				}
+
+				.desc {
+					.btn-expand {
+						text-align: center;
+				    padding-bottom: 10px;
+				    padding-top: 10px;
+				    border-top: 1px solid #3A434A;
+						a {
+					    color: #768E98;
+							display: block;
+							&:not(.collapsed) {
+								i:before {
+									content: "\f077";
+								}
+							}
+						}
+					}
+					.content {
+						background: #3C7B88;
+						.wrap {
+							padding: 15px;
+					    background: #212629;
+							color: gray;
+							a {
+								color: white;
+							}
 						}
 					}
 				}

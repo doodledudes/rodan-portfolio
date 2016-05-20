@@ -2,14 +2,14 @@ extends ./layout/layout_main.jade
 
 block content
   
-  .container
-    section#about
+  section#about
+    .container
       h3 Summary
       p
         | Rodan is an experienced UI/UX/Web Designer with a high level of expertise in building consumer- focused Websites and Web Apps. Most of his exposures have been in the Information Technology and Services industry. His main responsibilities are: Producing Web/UI/Graphic design, maintenance of web application layout and resolving browser compatibility issues. Worked closely with a team of Programmers and help them provide the most useful and best possible layout design. Administer a diverse team to resolve issues and implement technical and design improvisation. Moreover, these taught Rodan in building stronger relationship not only with his colleagues in the same department but also to work harmoniously with the different groups in the organization.
       //- p
-    //- section
-  //- container
+    //- container
+  //- section
   section.experience
     .container
       h2
@@ -126,8 +126,9 @@ block content
       //- timeline
     //- container
   //- section
-  .container
-    section#portfolio.portfolio
+  
+  section#portfolio.portfolio
+    .container
       .text-center
         h2 Portfolio
         strong
@@ -137,7 +138,27 @@ block content
       br
       br
       .row
-        .col-xs-6.col-sm-3.col-md-3
+        .col-xs-6.col-sm-6.col-md-6
+          .thumb
+            i.fa.fa-external-link-square.fa-3x
+            a(href='#')
+              img.center-block(src='assets/images/portfolio/port-portfolio.png', alt='')
+            //- a
+          //- thumb
+          h4 My Portfolio!
+        //- col
+        .col-xs-6.col-sm-6.col-md-6
+          .thumb
+            i.fa.fa-external-link-square.fa-3x
+            a(href='https://www.propertyvalue.com.au/', target='_blank')
+              img.center-block(src='assets/images/portfolio/port-rp.png', alt='')
+            //- a
+          //- thumb
+          h4 Property Value
+        //- col
+      //- row
+      .row
+        .col-xs-6.col-sm-6.col-md-3
           .thumb
             i.fa.fa-external-link-square.fa-3x
             a(href='http://ttstatic.github.io/happiv2/', target='_blank')
@@ -146,7 +167,7 @@ block content
           //- thumb
           h4 Happi.SG
         //- col
-        .col-xs-6.col-sm-3.col-md-3
+        .col-xs-6.col-sm-6.col-md-3
           .thumb
             i.fa.fa-external-link-square.fa-3x
             a(href='http://ttstatic.github.io/themepalette/', target='_blank')
@@ -155,7 +176,7 @@ block content
           //- thumb
           h4 Theme palette
         //- col
-        .col-xs-6.col-sm-3.col-md-3
+        .col-xs-6.col-sm-6.col-md-3
           .thumb
             i.fa.fa-external-link-square.fa-3x
             a(href='http://ttstatic.github.io/formsexpress/login', target='_blank')
@@ -164,7 +185,7 @@ block content
           //- thumb
           h4 Forms Express
         //- col
-        .col-xs-6.col-sm-3.col-md-3
+        .col-xs-6.col-sm-6.col-md-3
           .thumb
             i.fa.fa-external-link-square.fa-3x
             a(href='http://ttstatic.github.io/usemetv/', target='_blank')
@@ -174,8 +195,8 @@ block content
           h4 Useme.tv
         //- col
       //- row
-    //- section
-  //- container
+    //- container
+  //- section
 
 
 block scripts

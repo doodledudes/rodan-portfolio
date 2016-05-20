@@ -70,10 +70,13 @@ var bower = [
     bowerBaseDir + '/bootstrap/dist/**/*.*',
     bowerBaseDir + '/jquery/dist/**/*.*',
     bowerBaseDir + '/font-awesome/**/*.*',
+    bowerBaseDir + '/animate.css/**/*.*',
     '!' + bowerBaseDir + '/font-awesome/scss/**', // Exclude 'scss' folder
     '!' + bowerBaseDir + '/font-awesome/less/**', // Exclude 'less' folder
     '!' + bowerBaseDir + '/font-awesome/*.json', // Exclude '.json' files
-    '!' + bowerBaseDir + '/font-awesome/*.txt' // Exclude '.txt' files
+    '!' + bowerBaseDir + '/font-awesome/*.txt', // Exclude '.txt' files
+    '!' + bowerBaseDir + '/animate.css/*.json', // Exclude '.json' files
+    '!' + bowerBaseDir + '/animate.css/*.js' // Exclude '.js' files
 ];
 gulp.task('bower', function() {
     gulp.src(bower, { base: './'})

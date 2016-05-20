@@ -112,6 +112,7 @@ section {
 		    // border-bottom-width: 8px;
 		    overflow: hidden;
 				@include box-shadow(0px 0px 8px 0px rgba(84, 84, 84, .1));
+				visibility: hidden;
 			}
 			&:hover {
 				// @include box-shadow(0 1px 2px rgba(0, 0, 0, .15));
@@ -130,6 +131,7 @@ section {
 			& + h4 {
 				text-align: center;
 				margin-bottom: 45px;
+				visibility: hidden;
 			}
 		}
 		h2 {
@@ -173,6 +175,7 @@ section {
 					background: #2C343A;
 					color: white;
 					margin: 40px 0;
+					visibility: hidden;
 					@include border-radius(4px);
 				}
 				&.present {
@@ -293,6 +296,24 @@ section {
 				}
 			}
 		}
+	}
+	._1 {
+
+	}
+	._2 {
+		-webkit-animation-duration: 1.5s;
+	}
+	._3 {
+		-webkit-animation-duration: 2s;
+	}
+	._4 {
+		-webkit-animation-duration: 2.5s;
+	}
+	._5 {
+		-webkit-animation-duration: 3s;
+	}
+	._6 {
+		-webkit-animation-duration: 3.5s;
 	}
 }
 

@@ -2,9 +2,9 @@
   .container-fluid
     .row
       .col-xs-6.col-sm-6.col-md-6.browser
-        img.img-responsive.center-block(src="assets/images/banner/img-monitor.png", alt="")
+        img.img-responsive.center-block.animated.fadeInLeft(src="assets/images/banner/img-monitor.png", alt="")
       .col-xs-6.col-sm-6.col-md-6.monitor
-        img.img-responsive.center-block(src="assets/images/banner/img-browser.png", alt="")
+        img.img-responsive.center-block.animated.fadeInRight(src="assets/images/banner/img-browser.png", alt="")
     //- row
   //- container
 //- banner
@@ -19,10 +19,10 @@
         span.icon-bar
       a.navbar-brand(href='#')
         .photo
-          img(src="assets/images/me.jpg", alt="")
+          img.animated.flipInY(src="assets/images/me.jpg", alt="")
           br
           br
-        | Rodan Luzuriaga
+        span.animated.fadeInUpBig Rodan Luzuriaga
     #navbar.navbar-collapse.collapse
       ul.nav.navbar-nav
         li

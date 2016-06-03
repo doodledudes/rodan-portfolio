@@ -8,13 +8,15 @@ var exec = require('child_process').exec;
 // - ###########################################################################
 // - Runs the 'clean' task first before it run all other tasks.
 // - ###########################################################################
-gulp.task('default', ['clean'], function() {
-    exec('gulp main', function() {
-        console.log('Static files are now copied in the "public" folder.');
-
+gulp.task('default', ['clean'], function(cb) {
+    exec('gulp main', function(err,stdout,stderr) {
+        // console.log('Static files are now copied inside ttstatic.github.io "drinkcircle" folder.');
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
         // - Watchers
-        gulp.watch('assets/scss/**/*.scss',['sass']);
-        gulp.watch('./**/*.jade',['jade']);
+        // gulp.watch('assets/scss/**/*.scss',['sass']);
+        // gulp.watch('./**/*.jade',['jade']);
     });
 });
 gulp.task('main', ['jade', 'sass', 'copy', 'bower']);

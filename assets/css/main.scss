@@ -32,7 +32,6 @@ hr {
 		img {
 			width: 150px;
 			margin: auto;
-    	border: 8px solid #6DC9CC;
 			@include border-radius(50%);
 		}
 		@media screen and (max-width: 767px) {
@@ -151,6 +150,9 @@ section {
 			text-align: center;
 			font-size: 28px;
 			text-transform: uppercase;
+			i {
+				color: #2B3339;
+			}
 		}
 		.timeline {
 			position: relative;
@@ -175,7 +177,7 @@ section {
 					position: relative;
 					background: #2C343A;
 					color: white;
-					margin: 40px 0;
+					margin: 10px 0;
 					visibility: hidden;
 					@include border-radius(4px);
 				}
@@ -353,7 +355,7 @@ footer {
 		color: #ACABB1;
 	}
 	.credits {
-		line-height: 24px;
+
 	}
 }
 
@@ -365,7 +367,7 @@ footer {
 		// padding: 40px 0 70px;
 	}
 	.navbar {
-		.navbar-header .photo {
+		.navbar-header {
 	    margin-top: -93px;
 		}
 		.navbar-brand {

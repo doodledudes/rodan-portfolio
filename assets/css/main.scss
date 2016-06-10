@@ -32,6 +32,7 @@ hr {
 		img {
 			width: 150px;
 			margin: auto;
+	    border: 10px solid #6DC9CC;
 			@include border-radius(50%);
 		}
 		@media screen and (max-width: 767px) {

@@ -12,6 +12,9 @@ h1,h2,h3,h4,h5 {
 }
 p {
 	line-height: 28px;
+	&:last-child {
+		margin-bottom: 0;
+	}
 }
 hr {
 	border-color: #495761;
@@ -97,7 +100,10 @@ hr {
 
 section {
 	& {
-		padding: 40px 0;
+		padding: 15px 0;
+		@media screen and (min-width: 768px) {
+			padding: 40px 0;
+		}
 	}
 	&.portfolio {
 		& {
@@ -135,7 +141,6 @@ section {
 	}
 	&.experience {
 		& {
-			padding: 40px 0;
 			background: #38454F;
 		}
 		&, h2 {
@@ -146,6 +151,12 @@ section {
 			font-size: 28px;
 			i {
 				color: #2B3339;
+				font-size: 32px;
+				margin-right: 10px;
+				@media screen and (min-width: 768px) {
+					font-size: 2em;
+					margin: 0;
+				}
 			}
 		}
 		.timeline {
@@ -353,13 +364,7 @@ footer {
 	}
 }
 
-.wrap {
-	padding: 15px 0 0;
-}
 @media screen and (min-width: 768px) {
-	.wrap {
-		// padding: 40px 0 70px;
-	}
 	.navbar {
 		.navbar-header {
 	    margin-top: -93px;

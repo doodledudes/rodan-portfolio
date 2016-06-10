@@ -21,8 +21,7 @@ var Main = (function () {
 							$('.' + triggers[index]).find('.animated').css({'visibility' : 'visible'}).addClass('fadeInUp');
 						}
 						if ( triggers[index] == 'portfolio' ) {
-							$('.' + triggers[index]).find('.animated + h4').css({'visibility' : 'visible'}).addClass('fadeInUp')
-							$('.' + triggers[index]).find('.animated').css({'visibility' : 'visible'}).addClass('flipInX');
+							$('.' + triggers[index]).find('.animated').css({'visibility' : 'visible'}).addClass('fadeInUp');
 						}
 					}
 				});

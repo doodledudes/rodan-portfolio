@@ -5,6 +5,9 @@ var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var exec = require('child_process').exec;
 
+var root = '../doodledudes.github.io/';
+var dir = 'portfolio'
+
 // - ###########################################################################
 // - Runs the 'clean' task first before it run all other tasks.
 // - ###########################################################################
@@ -34,7 +37,7 @@ gulp.task('jade', function() {
             doctype: 'html',
             pretty: true
         }))
-        .pipe(gulp.dest('public'));
+        .pipe(gulp.dest(root + dir));
 });
 
 // - ###########################################################################
@@ -44,7 +47,7 @@ gulp.task('sass', function() {
     gulp.src('assets/css/**/*.scss')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(autoprefixer())
-    .pipe(gulp.dest('public/assets/css'));
+    .pipe(gulp.dest(root + dir + '/assets/css'));
 });
 
 // - ###########################################################################
@@ -61,7 +64,7 @@ var assets = [
 ];
 gulp.task('copy', function() {
     gulp.src(assets, { base: './'})
-        .pipe(gulp.dest('public'));
+        .pipe(gulp.dest(root + dir));
 });
 
 // - ###########################################################################
@@ -82,7 +85,7 @@ var bower = [
 ];
 gulp.task('bower', function() {
     gulp.src(bower, { base: './'})
-        .pipe(gulp.dest('public'));
+        .pipe(gulp.dest(root + dir));
 });
 
 // - ###########################################################################
@@ -90,5 +93,5 @@ gulp.task('bower', function() {
 // - ###########################################################################
 gulp.task('clean', function() {
     return gulp.src('./public', { read: false })
-        .pipe(clean());
+        .pipe(clean({force: true}));
 });

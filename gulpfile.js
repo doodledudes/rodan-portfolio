@@ -1,53 +1,56 @@
 var gulp = require('gulp');
 var clean = require('gulp-clean');
-var jade = require('gulp-jade');
+var pug = require('gulp-pug');
 var sass = require('gulp-sass');
+var browserSync   = require('browser-sync').create();
 var autoprefixer = require('gulp-autoprefixer');
 var exec = require('child_process').exec;
 
 var root = '../doodledudes.github.io/';
-var dir = 'portfolio'
+var dir = 'portfolio';
+var paths = {
+  pug: ['./*.pug', '!**[^_]/*.pug'],
+  scss: 'assets/css/**/*.scss'
+}
 
 // - ###########################################################################
 // - Runs the 'clean' task first before it run all other tasks.
 // - ###########################################################################
 gulp.task('default', ['clean'], function(cb) {
     exec('gulp main', function(err,stdout,stderr) {
-        // console.log('Static files are now copied inside ttstatic.github.io "drinkcircle" folder.');
         console.log(stdout);
         console.log(stderr);
         cb(err);
-        // - Watchers
-        // gulp.watch('assets/scss/**/*.scss',['sass']);
-        // gulp.watch('./**/*.jade',['jade']);
     });
 });
-gulp.task('main', ['jade', 'sass', 'copy', 'bower']);
+gulp.task('main', ['pug', 'sass', 'copy', 'bower']);
 
 // - ###########################################################################
-// - Compile JADE files to HTML
+// - Compile PUG files to HTML
 // - ###########################################################################
-gulp.task('jade', function() {
+gulp.task('pug', function() {
     /*
-     * Compile all Jade files except files with
+     * Compile all Pug files except files with
      * file names that starts with an underscore('_').
      */
-    gulp.src(['./*.jade', '!**[^_]/*.jade'])
-        .pipe(jade({
-            doctype: 'html',
-            pretty: true
-        }))
-        .pipe(gulp.dest(root + dir));
+    return gulp.src(paths.pug)
+      .pipe(pug({
+          doctype: 'html',
+          pretty: true
+      }))
+      .pipe(gulp.dest(root + dir))
+      .pipe(browserSync.stream());
 });
 
 // - ###########################################################################
 // - Compile SASS files to CSS
 // - ###########################################################################
 gulp.task('sass', function() {
-    gulp.src('assets/css/**/*.scss')
-    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(autoprefixer())
-    .pipe(gulp.dest(root + dir + '/assets/css'));
+    return gulp.src(paths.scss)
+      .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+      .pipe(autoprefixer())
+      .pipe(gulp.dest(root + dir + '/assets/css'))
+      .pipe(browserSync.stream());
 });
 
 // - ###########################################################################
@@ -94,4 +97,17 @@ gulp.task('bower', function() {
 gulp.task('clean', function() {
     return gulp.src('./public', { read: false })
         .pipe(clean({force: true}));
+});
+
+// - ###########################################################################
+// - Serve app and watch
+// - ###########################################################################
+gulp.task('serve', function() {
+  browserSync.init({
+    server: {
+      baseDir: root + dir
+    }
+  });
+  gulp.watch(paths.scss, ['sass']);
+  gulp.watch('./**/*.pug',['pug']);
 });

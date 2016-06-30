@@ -193,7 +193,7 @@ block content
           //- thumb
         //- col
         .col-xs-6.col-sm-6.col-md-3
-          .thumb.animated._6
+          .thumb.animated._6(data-toggle='tooltip', title='Best viewed in portrait mode.')
             i.fa.fa-external-link-square.fa-3x
             a(href='//ttstatic.github.io/usemetv/', target='_blank')
               img.center-block(src='assets/images/portfolio/port-usemetv.png', alt='')
@@ -211,5 +211,5 @@ block scripts
   // External Script goes here...
   script.
     $(document).ready(function(){
-      
+      $("[data-toggle='tooltip']").tooltip();
     });

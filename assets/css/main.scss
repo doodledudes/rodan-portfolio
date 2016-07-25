@@ -350,6 +350,9 @@ footer {
 	& {
 		color: white;
 	}
+	i, span, strong {
+		vertical-align: middle;
+	}
 	i {
 		color: #768E98;
 	}
@@ -368,6 +371,16 @@ footer {
 	}
 	.credits {
 
+	}
+	.btn.cv {
+		& {
+			margin-top: 25px;
+			font-size: 16px;
+		}
+		i {
+			color: white;
+			margin-right: 10px;
+		}
 	}
 }
 

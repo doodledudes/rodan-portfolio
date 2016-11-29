@@ -384,6 +384,20 @@ footer {
 	}
 }
 
+.certifications {
+	.img-responsive {
+		margin: auto;
+		width: 200px;
+		margin-top: 10px;
+	}
+	.title {
+		margin-top: 15px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
 @media screen and (min-width: 768px) {
 	.navbar {
 		.navbar-header {

@@ -36,7 +36,8 @@ hr {
 		img {
 			width: 150px;
 			margin: auto;
-	    border: 10px solid #6DC9CC;
+	    // border: 10px solid #6DC9CC;
+			border: 10px solid #556080;
 			@include border-radius(50%);
 		}
 		@media screen and (max-width: 767px) {
@@ -80,7 +81,8 @@ hr {
     border: none;
 		@include border-radius(0);
 		.icon-bar {
-			background: #6DC9CC;
+			// background: #6DC9CC;
+			background: #38454f;
 		}
 		&:focus, &:hover, &:active {
 			background: #ECF0F1;
@@ -88,9 +90,11 @@ hr {
 	}
 }
 .banner {
-	background: #6dc9cc;
+	// background: #6dc9cc;
+	background: #556080;
 	.monitor {
-		background: #9777a8;
+		// background: #9777a8;
+		background: #38454f;
 	}
 	.browser img, .monitor img {
 		visibility: hidden;

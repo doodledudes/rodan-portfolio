@@ -1,17 +1,23 @@
-var gulp = require('gulp');
-var clean = require('gulp-clean');
-var pug = require('gulp-pug');
-var sass = require('gulp-sass');
+var gulp          = require('gulp');
+var clean         = require('gulp-clean');
+var pug           = require('gulp-pug');
+var sass          = require('gulp-sass');
 var browserSync   = require('browser-sync').create();
-var autoprefixer = require('gulp-autoprefixer');
-var exec = require('child_process').exec;
+var autoprefixer  = require('gulp-autoprefixer');
+var exec          = require('child_process').exec;
 
-var root = '../doodledudes.github.io/';
-var dir = 'portfolio';
+var debug = require('gulp-debug');
+var changed = require('gulp-changed');
+var gutil = require('gulp-util');
+
+var root  = '../doodledudes.github.io/';
+var dir   = 'portfolio'; // you may change this.
+
 var paths = {
-  pug: ['./*.pug', '!**[^_]/*.pug'],
-  scss: 'assets/css/**/*.scss',
-  js: 'assets/scripts/**/*.js'
+    // This must be in the right order, so linked files are processed first.
+    pug: ['includes/**/*.pug', 'assets/vendor/**/*.pug', 'layout/**/*.pug', 'partials/**/*.pug', './*.pug', '!**/_*.pug', '!node_modules/**/*'],
+    scss: 'assets/css/**/*.scss',
+    js: 'assets/scripts/**/*.js'
 }
 
 // - ###########################################################################
@@ -24,26 +30,66 @@ gulp.task('default', ['clean'], function(cb) {
         cb(err);
     });
 });
-gulp.task('main', ['pug', 'sass', 'js', 'copy', 'bower']);
+gulp.task('main', ['pug-all', 'sass', 'js', 'copy', 'bower']);
 
 // - ###########################################################################
 // - Compile PUG files to HTML
 // - ###########################################################################
-gulp.task('pug', function() {
+gulp.task('pug-all', function() {
     /*
-     * Compile all Pug files except files with
-     * file names that starts with an underscore('_').
-     */
+    * Compile ALL pug files except files with
+    * file names that starts with an underscore('_').
+    */
     return gulp.src(paths.pug)
-      .pipe(pug({
-          doctype: 'html',
-          pretty: true
-      }))
-      .pipe(gulp.dest(root + dir));
+    // Convert the pug files to html files
+    .pipe(pug({
+        doctype: 'html',
+        pretty: true
+    }))
+
+    // Handle ug errors nicely
+    .on('error', function(err){
+        gutil.log(err.message);
+        this.emit('end'); // prevents watch from dying
+    })
+    // Write a message
+    .pipe(debug({title:'Installed'}))
+    // Place the resultant HTML file into the destination directory.
+    .pipe(gulp.dest(root + dir))
+    // Refresh the page in the browser
+    .pipe(browserSync.stream());
 });
-gulp.task('pug-watch', ['pug'], function (done) {
-    browserSync.reload();
+
+
+gulp.task('pug-incremental', (done) => {
+
+    var dest = root + dir;
+    gulp.src(paths.pug)
+    // Look for files newer than the corresponding .html
+    // file in the destination directory.
+    .pipe(changed(dest, {extension: '.html'}))
+    // Convert the pug files to html files
+    .pipe(pug({
+        doctype: 'html',
+        pretty: true
+    }))
+    // Handle ug errors nicely
+    .on('error', function(err){
+        gutil.log(err.message);
+        this.emit('end'); // prevents watch from dying
+    })
+    // Write a message
+    .pipe(debug({title:'Installed'}))
+    // Place the resultant HTML file into the destination directory.
+    .pipe(gulp.dest(dest))
+    // Refresh the page in the browser
+    .pipe(browserSync.stream());
+
     done();
+
+});
+gulp.task('watch', () => {
+    gulp.watch(paths.pug,['pug-incremental']);
 });
 
 // - ###########################################################################
@@ -107,7 +153,7 @@ gulp.task('bower', function() {
 // - Clean task (deletes the public folder)
 // - ###########################################################################
 gulp.task('clean', function() {
-    return gulp.src('./public', { read: false })
+    return gulp.src(root + dir, { read: false })
         .pipe(clean({force: true}));
 });
 
@@ -115,12 +161,43 @@ gulp.task('clean', function() {
 // - Serve app and watch
 // - ###########################################################################
 gulp.task('serve', function() {
-  browserSync.init({
-    server: {
-      baseDir: root + dir
-    }
-  });
-  gulp.watch(paths.scss, ['sass']);
-  gulp.watch(paths.js, ['js']);
-  gulp.watch('./**/*.pug',['pug-watch']);
+    browserSync.init({
+        server: {
+            baseDir: root + dir
+        },
+        port: 3030,
+        //reloadDelay: 200 // Give the server time to pick up the new files.
+    });
+
+    console.log('')
+    console.log('Please note that "serve" compiles and installs changed')
+    console.log('pugs, but not other pugs that are dependant upon them.')
+    console.log('To force compile every pug, use "gulp serve-all".');
+    console.log('')
+    console.log('')
+    gulp.watch(paths.scss, ['sass']);
+    gulp.watch(paths.js, ['js']);
+    //    gulp.watch('./**/*.pug',['pug-watch']);
+    gulp.watch(paths.pug,['pug-incremental']);
+});
+
+
+gulp.task('serve-all', function() {
+    browserSync.init({
+        server: {
+            baseDir: root + dir
+        },
+        port: 3030,
+        //reloadDelay: 200 // Give the server time to pick up the new files.
+    });
+    console.log('')
+    console.log('Please note that "serve-all" compiles and installs')
+    console.log('ALL pugs, so is quite slow. To only compile changed')
+    console.log('pugs, use "gulp serve".');
+    console.log('')
+    console.log('')
+    gulp.watch(paths.scss, ['sass']);
+    gulp.watch(paths.js, ['js']);
+    //    gulp.watch('./**/*.pug',['pug-watch']);
+    gulp.watch(paths.pug,['pug-all']);
 });

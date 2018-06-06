@@ -17,6 +17,6 @@
   "dependencies": {
     "font-awesome": "fontawesome#^4.5.0",
     "jquery": "^2.2.3",
-    "animate.css": "git@github.com:daneden/animate.css.git#^3.5.1"
+    "animate.css": "https://github.com/daneden/animate.css.git#^3.5.2"
   }
 }

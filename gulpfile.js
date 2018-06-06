@@ -12,6 +12,7 @@ var gutil = require('gulp-util');
 
 var root  = './';
 var dir   = 'public'; // you may change this.
+// test
 
 var paths = {
     // This must be in the right order, so linked files are processed first.

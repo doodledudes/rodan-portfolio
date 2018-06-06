@@ -10,8 +10,8 @@ var debug = require('gulp-debug');
 var changed = require('gulp-changed');
 var gutil = require('gulp-util');
 
-var root  = '../doodledudes.github.io/';
-var dir   = 'portfolio'; // you may change this.
+var root  = './';
+var dir   = 'public'; // you may change this.
 
 var paths = {
     // This must be in the right order, so linked files are processed first.

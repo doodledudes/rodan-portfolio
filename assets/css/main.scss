@@ -114,7 +114,9 @@ section {
 		}
 	}
 	&.skills {
-
+		.img-responsive.center-block {
+			max-height: 220px
+		}
 	}
 	&.portfolio {
 		& {
